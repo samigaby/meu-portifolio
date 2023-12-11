@@ -1,0 +1,80 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+}
+
+.plano-de-fundo {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.plano-de-fundo img {
+    width: 100%; /* Imagem ocupa 100% da largura do contêiner */
+    height: 10%; /* Altura ajustada automaticamente para manter a proporção */
+}
+
+.title {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.opcoes-de-menu {
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.menu-item {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #333; /* Cor de fundo dos botões */
+    color: #fff; /* Cor do texto dos botões */
+    border-radius: 5px; /* Cantos arredondados */
+}
+
+.conteudo {
+    display: none;
+    margin: 20px;
+    text-align: justify;
+    position: absolute;
+    top: 50%; /* Ajuste a posição vertical */
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.conteudo {
+    display: none;
+    margin: 20px;
+    text-align: justify;
+    border: 2px solid #fff; /* Adiciona uma borda branca de 2 pixels */
+    padding: 10px; /* Adiciona um preenchimento interno de 10 pixels */
+    border-radius: 5px; /* Cantos arredondados */
+}
+
+.imagem-de-baixo {
+    position: fixed; /* Posição fixa na tela */
+    bottom: 0; /* Alinha a parte inferior da imagem com a parte inferior da tela */
+    width: 100vw; /* Largura total da viewport */
+    height: 17vh; /* Altura relativa à viewport (5% da altura da viewport, ajuste conforme necessário) */
+}
+.imagem-de-baixo img {
+    width: 100%; /* Imagem ocupa 100% da largura do contêiner */
+    height: 100%; /* Altura ocupa 100% da altura do contêiner */
+}
+.linkedin-logo {
+    width: 50px; /* Ajuste a largura conforme necessário */
+    /* Adicione outros estilos conforme necessário */
+}

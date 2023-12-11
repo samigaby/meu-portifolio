@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portfólio</title>
+    <link rel="stylesheet" href="Styles.css">
+</head>
+<body>
+    <header class="menu-principal"></header>
+    <div class="plano-de-fundo">
+        <img src="C:\Users\samar\Downloads\fundo do protifolio.jpeg" alt="imagem de fundo da galaxia roxa">
+        <div class="title">Meu Portfólio</div>
+        <div class="opcoes-de-menu">
+            <div class="menu-item" onclick="mostrarConteudo('sobre-mim')">Sobre mim</div>
+            <div class="menu-item" onclick="mostrarConteudo('educacao-certificacoes')">Educação e Certificações</div>
+            <div class="menu-item" onclick="mostrarConteudo('Última Experiencia Profissional')">Última Experiencia Profissional</div>
+            <div class="menu-item" onclick="mostrarConteudo('contato')">Contato</div>
+        </div>
+    </div>
+    <div class="conteudo" id="sobre-mim">
+        <div>
+            <p>Olá, meu nome é Samara Gabriela, tenho 22 anos e moro em Brasília atualmente, sou uma profissional focada em otimizar a experiência do cliente e aprimorar interações. 
+                Cursando Tecnologia em Ciência de Dados pela UNINTER e com certificações em Customer Experience e Customer Success, 
+                compreendo profundamente as necessidades dos clientes para propor soluções eficazes. 
+                Possuo experiência de 3 anos em atendimento ao cliente, adquirida em empresas de telecomunicações, 
+                bem como em projetos de voluntariado e startups. Durante esse período, tive a oportunidade de atuar em 
+                diversos setores, lidando com uma ampla variedade de produtos e serviços, o que me proporcionou uma visão 
+                abrangente e adaptabilidade para atender às necessidades dos clientes de forma eficaz. Também tenho 6 meses 
+                de experiência em gestão financeira pela AIESEC em Brasília, com habilidades em análise, organização e 
+                decisões estratégicas.</p>
+        </div>
+    </div>
+    <div class="conteudo" id="educacao-certificacoes">
+        <div><p>Tecnologia em Ciência de Dados (em andamento) 2023 - 2025</p>
+            UNINTER - Centro Universitário Internacional. Brasília, DF.
+            <br>
+            <br>
+            <hr>
+            <li>Análise de Dados e Power BI</li>          Julho/2023 - Escola Conquer
+            <br>
+            <br>
+            <li>Excel Intermediário</li>                  Julho/2023 - Escola Conquer
+            <br>
+            <br>
+            <li>Customer Success</li>                      Fevereiro/2023 - Rock University
+            <br>
+            <br>
+            <li>Customer Experience</li>                   Janeiro/2023 - Rock University
+            <br>
+            <br>
+            <li>Produtividade e Gestão do Tempo</li>       Janeiro/2022 - Escola Conquer </div>
+    </div>
+    <div class="conteudo" id="Última Experiencia Profissional">
+        <div><p>Auxiliar de Customer Experience.</p>                           Juros Baixos, Nov 2022 - Nov 2023.
+            <br>
+            <br>
+            • Atendimento ágil e eficiente a clientes, focado em contratações de empréstimos (auto equity, home equity, saque –
+            aniversário, Triagem e suporte à conta) pelo WhatsApp, através da plataforma Fortics, garantindo uma experiência positiva
+            para os clientes.
+            <br>
+            • Suporte à equipe de tecnologia, fornecendo insights e relatórios sobre bugs do produto para aprimorar sua qualidade e
+            usabilidade.
+            <br>
+            • Implementação de melhorias nos processos e qualidade do atendimento, otimizando a eficiência operacional e
+            assegurando excelência no serviço ao cliente.
+            <br>
+            • Elaboração de planilhas e relatórios por meio das ferramentas Microsoft Excel, Google Sheets e Power BI, com o propósito
+            de monitorar de perto métricas, resultados e tarefas relacionadas à Experiência do Cliente (CX).
+            <br>
+            • Planejamento e execução de testes A/B visando o aprimoramento das métricas e desempenho das interações de
+            atendimento ao cliente.
+            <br>
+            • Colaboração ativa e engajada com a equipe e squads, visando alcançar os objetivos do projeto de forma proativa.
+            <br>
+            • Acompanhamento conjunto com os squads leaders das métricas e resultados para embasar decisões e atingir metas e
+            indicadores de desempenho.
+            <br>
+            • Estruturação e gestão de OKRs (Objectives and Key Results) com foco na melhoria dos resultados de Experiência do
+            Cliente (CX).
+            <br>
+            <br>
+        </div>
+    </div>
+    <div class="conteudo" id="contato">
+        <div class="menu-item" onclick="window.open('https://www.linkedin.com/in/samara-gabriela-da-costa-franco-a7367820b/')">
+            <img class="linkedin-logo" src="C:\Users\samar\Downloads\linkedin_logo.jpeg" alt="LinkedIn">
+        </div>
+    </div>
+
+    <script>
+        function mostrarConteudo(id) {
+            // Esconder todos os conteúdos
+            var conteudos = document.querySelectorAll('.conteudo');
+            for (var i = 0; i < conteudos.length; i++) {
+                conteudos[i].style.display = 'none';
+            }
+
+            // Mostrar o conteúdo correspondente ao ID selecionado
+            var conteudoSelecionado = document.getElementById(id);
+            conteudoSelecionado.style.display = 'block';
+        }
+    </script>
+    <header class="final-da-pagina"></header>
+    <div class="imagem-de-baixo">
+        <h5>click nas opções de menu</h5>
+        <img src="C:\Users\samar\Downloads\fundo do protifolio.jpeg" alt="imagem de fundo da galaxia roxa">
+    </div>
+</body>
+</html>
