@@ -2,7 +2,7 @@
 
 Este é o repositório do meu portfólio pessoal, um projeto que centraliza minhas informações profissionais, projetos e competências na área de dados. Ele foi desenvolvido para apresentar minha jornada e minhas habilidades de forma clara e acessível.
 
-**Visite o site no ar:** [**https://samigaby.github.io/meu-portfolio/**](https://samigaby.github.io/meu-portfolio/)
+**Visite o site no ar:** [**https://samigaby.github.io/meu-portifolio/**](https://samigaby.github.io/meu-portifolio/)
 
 ---
 
