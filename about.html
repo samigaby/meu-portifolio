@@ -20,6 +20,7 @@
             <a href="experience.html">Experiência</a>
 
         </nav>
+            <div id="menu-icon" class="fas fa-bars"></div>
     </header>
 
 <section class="about" id="about">
@@ -80,3 +81,16 @@ Hoje, sou essa pessoa: alguém que veio do atendimento, entende de processos, e 
         </div>
 
     </section>
+
+            <script>
+                let menuIcon = document.querySelector('#menu-icon');
+                let navbar = document.querySelector('nav');
+
+                menuIcon.onclick = () => {
+                    menuIcon.classList.toggle('fa-times');
+                    navbar.classList.toggle('active');
+                };
+            </script>
+
+        </body>
+        </html>

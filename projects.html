@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre Mim - Portfólio Sami</title>
+    <title>Projetos - Portfólio Sami</title>
     <link rel="stylesheet" href="style.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -15,11 +15,11 @@
         <nav>
             <a href="index.html">Início</a>
             <a href="about.html">Sobre mim</a>
-            <a href="projects.html"class="active">Projetos</a>
+            <a href="projects.html" class="active">Projetos</a>
             <a href="education.html">Educação</a>
             <a href="experience.html">Experiência</a>
-
         </nav>
+            <div id="menu-icon" class="fas fa-bars"></div>
     </header>
 
     <section class="about" id="about">
@@ -27,6 +27,29 @@
             <h2 class="heading">Meus <span>Projetos</span></h2>
             
             <div class="projects-container">
+
+                <div class="project-card">
+                    <img src="dashboard-poluidoras.png" alt="Dashboard Unidades Poluidoras" class="project-image">
+                    
+                    <h4 class="project-title">Dashboard - Unidades Poluidoras</h4>
+                    
+                    <p class="project-description">
+                        Dashboard interativo desenvolvido no Tableau para visualização de dados sobre unidades poluidoras. Permite análise geográfica e categórica para monitoramento de impacto ambiental.
+                    </p>
+                    
+                    <div class="project-tags">
+                        <span>Tableau</span>
+                        <span>Data Viz</span>
+                        <span>Análise de Dados</span>
+                        <span>Business Intelligence</span>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="https://public.tableau.com/app/profile/samara.franco/viz/UnidadePoluidora/Geral" target="_blank" class="btn-link">
+                            <i class="fas fa-chart-line"></i> Ver no Tableau
+                        </a>
+                    </div>
+                </div>
 
                 <div class="project-card">
                     
@@ -52,9 +75,16 @@
                     </div>
                 </div>
 
-                </div>
-        </div>
+            </div> </div>
     </section>
-    
+        <script>
+                let menuIcon = document.querySelector('#menu-icon');
+                let navbar = document.querySelector('nav');
+
+                menuIcon.onclick = () => {
+                    menuIcon.classList.toggle('fa-times');
+                    navbar.classList.toggle('active');
+                };
+        </script>   
 </body>
 </html>

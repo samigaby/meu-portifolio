@@ -1,3 +1,17 @@
+/* ==========================================================================
+   1. VARIÁVEIS GERAIS E RESET
+   Mude as cores aqui para afetar o site todo.
+   ========================================================================== */
+:root {
+    --main-color: #5CC093;       /* Verde Principal */
+    --bg-color: #111;            /* Fundo Geral */
+    --bg-card: #1f1f1f;          /* Fundo dos Cards (Escuro) */
+    --bg-card-light: #f4f4f4;    /* Fundo dos Cards Projetos (Claro) */
+    --text-color: #fff;          /* Texto Branco */
+    --text-gray: #ccc;           /* Texto Cinza */
+    --border-color: #333;        /* Bordas Sutis */
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
 
 * {
@@ -12,7 +26,7 @@
 
 html {
     font-size: 62.5%;
-    scroll-behavior: smooth; /* Adicionado para rolagem suave */
+    scroll-behavior: smooth;
 }
 
 body {
@@ -20,34 +34,41 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     background-image: linear-gradient(to right, #535353 0%, black 100%);
-    color: white;
+    color: var(--text-color);
 }
 
-/* =================================
-   HEADER
-   ================================= */
+section {
+    min-height: 100vh;
+    padding: 10rem 9% 2rem; /* Padronizei o padding das seções */
+}
+
+span {
+    color: var(--main-color);
+}
+
+/* ==========================================================================
+   2. HEADER E NAVEGAÇÃO (MENU)
+   ========================================================================== */
 header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 2rem 3%;
-    background-color: transparent(0, 0, 0, 0.3); /* Fundo semi-transparente para melhor leitura */
-    backdrop-filter: blur(0px); /* Efeito de vidro fosco */
+    padding: 2rem 9%; /* Ajustado para alinhar com o corpo */
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px); /* Aumentei o blur para ficar mais bonito */
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     z-index: 100;
 }
 
 .logo {
     font-size: 3.5rem;
     font-weight: 600;
-    color: #5CC093;
+    color: var(--main-color);
     cursor: pointer;
     transition: 0.5s ease;
-    margin-right: 20rem;
 }
 
 .logo:hover {
@@ -56,7 +77,7 @@ header {
 
 nav a {
     font-size: 1.8rem;
-    color: white;
+    color: var(--text-color);
     margin-left: 4rem;
     font-weight: 500;
     transition: 0.3s ease;
@@ -65,18 +86,64 @@ nav a {
 
 nav a:hover,
 nav a.active {
-    color: #5CC093;
-    border-bottom: 3px solid #5CC093;
+    color: var(--main-color);
+    border-bottom: 3px solid var(--main-color);
 }
 
-/* =================================
-   HOME SECTION
-   ================================= */
-section {
-    min-height: 100vh;
-    padding: 5rem 9% 5rem;
+/* --- ÍCONE DO MENU MOBILE (HAMBURGUER) --- */
+#menu-icon {
+    font-size: 3.6rem;
+    color: var(--text-color);
+    display: none; /* Escondido no PC */
+    cursor: pointer;
 }
 
+/* --- RESPONSIVIDADE DO MENU (CELULAR/TABLET) --- */
+@media (max-width: 995px) {
+    header {
+        padding: 2rem 3%;
+    }
+
+    /* Mostra o ícone do menu */
+    #menu-icon {
+        display: block; 
+    }
+
+    nav {
+        position: absolute;
+        top: 100%;
+        left: 0; /* Mudei para left 0 width 100% para ocupar a tela toda */
+        width: 100%;
+        padding: 1rem 3%;
+        background-color: #161616;
+        border-top: 1px solid #333;
+        
+        /* Efeito de esconder/mostrar */
+        display: none; /* JS vai trocar isso para 'block' */
+    }
+
+    /* Classe que o Javascript vai adicionar quando clicar */
+    nav.active {
+        display: block;
+        animation: slideDown 0.5s ease forwards;
+    }
+
+    nav a {
+        display: block;
+        font-size: 2rem;
+        margin: 2rem 0;
+        text-align: center; /* Centraliza links no mobile */
+    }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   3. PÁGINA: HOME (INÍCIO)
+   ========================================================================== */
 .home {
     display: flex;
     justify-content: center;
@@ -96,66 +163,44 @@ section {
     font-weight: 700;
 }
 
-span {
-    color: #5CC093;
-}
-
-
-/* >>> CÓDIGO PARA SEPARAR CONTÊINER E IMAGEM <<< */
-
-/* 1. O CONTÊINER PRINCIPAL (A CAIXA QUE SEGURA TUDO) */
+/* Imagem da Home e seus efeitos */
 .home-img {
-    position: relative; /* Essencial para o posicionamento das camadas */
+    position: relative;
     width: 350px;
     height: 350px;  
-    /* Adicionamos display flex para centralizar a imagem facilmente */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* 2. A FORMA DE FUNDO (A CAMADA DE TRÁS) */
 .home-img::before {
-    content: ''; /* Pseudo-elementos sempre precisam de 'content' */
-    position: absolute; /* Posição absoluta em relação ao .home-img */
-    width: 100%;       /* Ocupa 100% do tamanho do pai */
+    content: '';
+    position: absolute;
+    width: 100%;
     height: 100%;
     top: 0;
     left: 0;
-    /* É AQUI QUE VOCÊ CRIA SUA FORMA CUSTOMIZADA! */
-    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; 
-    
-    /* O brilho e a cor ficam na forma de fundo */
-    background-color: #333; /* Uma cor de fundo para a forma */
-    box-shadow: 0 0 30px #5CC093;
-    
+    border-radius: 50%; 
+    background-color: #333;
+    box-shadow: 0 0 30px var(--main-color);
     transition: 0.4s ease-in-out;
 }
 
-/* 3. A IMAGEM (A CAMADA DA FRENTE) */
 .home-img img {
-    width: 102%;  /* Um pouco menor que o contêiner para a borda aparecer */
+    width: 102%;
     height: 110%;
-    object-fit: cover; /* Garante que a foto não se distorça */
-    
-    /* AQUI você define a forma da IMAGEM! Pode ser um círculo perfeito. */
+    object-fit: cover;
     border-radius: 50%; 
-    
-    /* Garante que a imagem fique na frente da forma de fundo */
     position: relative; 
     z-index: 1;
 }
 
-/* EFEITO HOVER: Aumenta a forma de trás e o brilho */
 .home-img:hover::before {
     transform: scale(1.02);
-    box-shadow: 0 0 100px #5CC093;
+    box-shadow: 0 0 100px var(--main-color);
 }
 
-/* Lembre-se: A regra para .home-img img deve ser APAGADA do seu CSS! */
-/* >>> FIM DA SOLUÇÃO <<< */
-
-
+/* Ícones Sociais e Botões */
 .social-icons a {
     display: inline-flex;
     justify-content: center;
@@ -163,16 +208,16 @@ span {
     width: 4rem;
     height: 4rem;
     background-color: transparent;
-    border: 2px solid #5CC093;
+    border: 2px solid var(--main-color);
     border-radius: 50%;
     font-size: 2rem;
-    color: #5CC093;
+    color: var(--main-color);
     margin: 3rem 1.5rem 3rem 0;
     transition: 0.3s ease;
 }
 
 .social-icons a:hover {
-    background-color: #5CC093;
+    background-color: var(--main-color);
     color: white;
     transform: translateY(-5px);
 }
@@ -180,703 +225,252 @@ span {
 .btn {
     display: inline-block;
     padding: 1.2rem 2.8rem;
-    background-color: #5CC093;
+    background-color: var(--main-color);
     border-radius: 4rem;
     font-size: 1.6rem;
     color: white;
     letter-spacing: 0.1rem;
     font-weight: 600;
-    border: 2px solid #5CC093;
+    border: 2px solid var(--main-color);
     transition: 0.3s ease;
     cursor: pointer;
-    box-shadow: 0 0 10px #5CC093;
+    box-shadow: 0 0 10px var(--main-color);
 }
 
 .btn:hover {
     transform: scale(1.03);
     background-color: transparent;
-    color: #5CC093;
-    box-shadow: 0 0 25px #5CC093;
+    color: var(--main-color);
+    box-shadow: 0 0 25px var(--main-color);
 }
 
-.typing-text span {
-    position: relative;
-}
-
+/* Animação de Digitação */
+.typing-text span { position: relative; }
 .typing-text span::before {
     content: "Analytics Engineer";
-    color: #5CC093;
-    animation: word 20s infinite; /* Animação que troca as palavras */
-
-    /* A MÁGICA ACONTECE AQUI */
-    
-    white-space: nowrap; /* Evita que o texto quebre linha */
-    overflow: hidden; /* Garante que nada escape */
-    clip-path: inset(0 100% 0 0); /* Começa "cortado" (invisível) */
-    
-    /* Animação que "digita" e "apaga" usando o clip-path */
-    animation: word 20s infinite,
-                 typing 20s steps(18) infinite;
+    color: var(--main-color);
+    white-space: nowrap; overflow: hidden; clip-path: inset(0 100% 0 0); 
+    animation: word 20s infinite, typing 20s steps(18) infinite;
 }
-
 .typing-text span::after {
-    content: "";
-    position: absolute;
-    width: 3px; /* Apenas a largura do cursor */
-    height: 100%;
-    background-color: #5CC093; /* Cor do cursor */
-    
-    /* Posição inicial ao lado do texto (que está invisível) */
-    left: 0; 
-    
-    /* As duas animações: uma para piscar e outra para acompanhar o texto */
-    animation: cursor_move 20s steps(18) infinite,
-                 blink 0.8s infinite;
+    content: ""; position: absolute; width: 3px; height: 100%;
+    background-color: var(--main-color); left: 0; 
+    animation: cursor_move 20s steps(18) infinite, blink 0.8s infinite;
 }
 
-/* ================================================= */
-/* KEYFRAMES ATUALIZADOS               */
-/* ================================================= */
-
-/* 1. Animação que troca o texto (esta não muda) */
-@keyframes word {
-    0%, 49.9% { content: "Analytics Engineer"; }
-    50%, 100% { content: "Data Analyst"; }
+/* Keyframes da Home */
+@keyframes word { 0%, 49.9% { content: "Analytics Engineer"; } 50%, 100% { content: "Data Analyst"; } }
+@keyframes typing { 
+    0%, 4% { clip-path: inset(0 100% 0 0); } 
+    10%, 40% { clip-path: inset(0 0 0 0); } 
+    44%, 49.9% { clip-path: inset(0 100% 0 0); } 
+    50%, 54% { clip-path: inset(0 100% 0 0); } 
+    60%, 90% { clip-path: inset(0 0 0 0); } 
+    94%, 100% { clip-path: inset(0 100% 0 0); } 
 }
-
-/* 2. Animação que revela/esconde o texto com clip-path */
-@keyframes typing {
-    /* FASE 1: "Analytics Engineer" */
-    0%, 4% { clip-path: inset(0 100% 0 0); } /* Escondido */
-    10%, 40% { clip-path: inset(0 0 0 0); } /* Totalmente visível */
-    44%, 49.9% { clip-path: inset(0 100% 0 0); } /* Escondido de novo */
-
-    /* FASE 2: "Data Analyst" */
-    50%, 54% { clip-path: inset(0 100% 0 0); } /* Continua escondido */
-    60%, 90% { clip-path: inset(0 0 0 0); } /* Totalmente visível */
-    94%, 100% { clip-path: inset(0 100% 0 0); } /* Escondido para recomeçar */
-}
-
-/* 3. Animação que move o cursor junto com o texto */
 @keyframes cursor_move {
-    /* FASE 1 */
-    0%, 4% { left: 0; }
-    10%, 40% { left: 100%; }
-    44%, 49.9% { left: 0; }
-
-    /* FASE 2 */
-    50%, 54% { left: 0; }
-    60%, 90% { left: 100%; }
-    94%, 100% { left: 0; }
+    0%, 4% { left: 0; } 10%, 40% { left: 100%; } 44%, 49.9% { left: 0; }
+    50%, 54% { left: 0; } 60%, 90% { left: 100%; } 94%, 100% { left: 0; }
 }
+@keyframes blink { to { background-color: transparent; } }
 
-/* 4. Animação que faz o cursor piscar */
-@keyframes blink {
-    to { background-color: transparent; }
-}
-
-/* =================================
-   MEDIA QUERIES (Responsivo)
-   ================================= */
+/* --- RESPONSIVIDADE DA HOME --- */
 @media (max-width: 995px) {
-    header {
-        padding: 2rem 3%;
-    }
-
-    nav {
-        position: absolute;
-        top: 100%;
-        right: -100%; /* Começa fora da tela para transição */
-        width: 40%;
-        border-left: 3px solid #5CC093;
-        border-bottom: 3px solid #5CC093;
-        border-bottom-left-radius: 2rem;
-        padding: 1rem 0;
-        background-color: #161616;
-        transition: 0.3s ease; /* Adicionado para o menu aparecer suavemente */
-        display: none;
-    }
-
-    nav.active {
-        right: 0; /* Posição final da transição */
-        display: block;
-    }
-
-    nav a {
-        display: block;
-        font-size: 2rem;
-        margin: 3rem 0;
-        text-align: center;
-    }
-
     .home {
         flex-direction: column;
         text-align: center;
-        margin-top: 6rem;
+        margin-top: 5rem;
     }
-
-    .home-content {
-        order: 2; /* Coloca o texto depois da imagem */
-    }
-
-    .home-img {
-        order: 1; /* Coloca a imagem primeiro */
-        width: 280px; /* Tamanho fixo menor para mobile */
-        height: 280px;
-        margin-bottom: 3rem;
-    }
-    
-    .home-content h1 {
-        font-size: 5rem;
-    }
-    
-    .home-content h3 {
-        font-size: 2.5rem;
-    }
+    .home-content { order: 2; }
+    .home-img { order: 1; width: 280px; height: 280px; margin-bottom: 3rem; }
+    .home-content h1 { font-size: 4rem; }
+    .home-content h3 { font-size: 2.5rem; }
 }
 
-/* =================================
-   NOVO ESTILO - PÁGINA SOBRE MIM
-   ================================= */
-
-/* Ajustes gerais da seção about */
+/* ==========================================================================
+   4. PÁGINA: SOBRE MIM (INTRO, TIMELINE, FOTOS)
+   ========================================================================== */
 .about {
-    padding-top: 12rem;
-    padding-bottom: 5rem;
-    background-color: #111;
+    background-color: var(--bg-color);
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centraliza horizontalmente o conteúdo */
-    justify-content: flex-start;
-    min-height: 100vh;
+    align-items: center; 
 }
 
-/* 1. Estilo para o texto de introdução */
+/* Caixa de Introdução */
 .about-intro {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 8rem auto; /* Centraliza e adiciona espaço abaixo */
-}
-
-.about-intro p {
-    font-size: 1.7rem;
-    line-height: 1.7;
-    color: #ccc;
-}
-
-/* ================================================== */
-/* 2. ESTILO CORRIGIDO PARA A LINHA DO TEMPO HORIZONTAL */
-/* ================================================== */
-
-.timeline-horizontal-container {
-    width: 100%;
-    max-width: 1000px;
-    margin-bottom: 8rem;
-    text-align: center;
-}
-
-.timeline-horizontal-container .heading-small {
-    font-size: 3rem;
-    margin-bottom: 14rem; /* Aumentei o espaço abaixo do título */
-}
-
-.timeline-horizontal {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    /* CORREÇÃO 1: Faz todos os .timeline-item terem a mesma altura */
-    align-items: stretch; 
-}
-
-/* A linha horizontal */
-.timeline-horizontal::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 4px;
-    background-color: #5CC093;
-    box-shadow: 0 0 10px #5CC093;
-    top: 0; /* A linha agora fica no topo do container */
-    left: 0;
-    z-index: 0;
-}
-
-/* Cada item da linha do tempo */
-.timeline-item {
-    flex: 1;
-    text-align: center;
-    position: relative;
-    padding: 0 15px;
-    /* CORREÇÃO 2: Transforma o item em um container flex de coluna */
-    display: flex;
-    flex-direction: column;
-}
-
-/* Título do evento (acima do ponto) */
-.timeline-title {
-    font-size: 1.8rem;
-    color: white;
-    /* Puxamos o título para CIMA da linha com margem negativa */
-    margin-bottom: 30px;
-    transform: translateY(-150%);
-}
-
-/* O ponto na linha */
-.timeline-dot {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    /* CORRIGIDO: Posição do ponto para ficar no centro da linha */
-    top: -8px; 
-    width: 20px;
-    height: 20px;
-    background-color: white;
-    border: 4px solid #5CC093;
-    border-radius: 50%;
-    box-shadow: 0 0 15px #5CC093;
-    z-index: 2; /* Ponto acima da linha */
-}
-
-/* A caixa de conteúdo (abaixo do ponto) */
-.timeline-content {
-    background-color: #1f1f1f;
-    padding: 1.55rem;
-    border-radius: 8px;
-    border: 1px solid #333;
-    text-align: left;
-    /* CORREÇÃO 3: Empurra a caixa para o final do espaço disponível */
-    margin-top: auto;
-    /* Ajuste: Mantém o espaço entre o ponto e a caixa com padding */
-    padding-top: 30px;
-}
-
-.timeline-content p {
-    font-size: 1.5rem;
-    line-height: 1.3;
-    color: #ccc;
-}
-
-/* =================================
-   ESTILOS DA GALERIA DE FOTOS (Cor corrigida)
-   ================================= */
-.photos {
-    padding: 10rem 9% 5rem;
-    background-color: black;
-    text-align: center;
-}
-
-.photo-gallery {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 2rem;
-    margin-top: 4rem;
-}
-
-.photo-gallery img {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-    border: 3px solid #5CC093; /* COR CORRIGIDA */
-    border-radius: 8px;
-    transition: 0.3s ease;
-}
-
-.photo-gallery img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px #5CC093; /* COR CORRIGIDA */
-}
-
-/* =================================
-   MEDIA QUERIES (Responsivo para a linha do tempo horizontal)
-   ================================= */
-@media (max-width: 768px) {
-    .timeline-horizontal {
-        flex-direction: column; /* Em telas menores, a linha do tempo vira coluna */
-        align-items: flex-start; /* Alinha os itens à esquerda */
-        padding-top: 0;
-        padding-bottom: 0;
-        margin: 0 auto;
-        width: 100%;
-        max-width: 400px; /* Limita a largura quando em coluna */
-    }
-
-    .timeline-horizontal::before {
-        height: calc(100% - 20px); /* Linha vertical para mobile */
-        width: 4px;
-        top: 10px;
-        left: 20px;
-        transform: translateX(0);
-    }
-
-    .timeline-item {
-        width: 100%;
-        max-width: none;
-        padding: 60px 0 20px 60px; /* Ajusta o padding para a linha lateral */
-        text-align: left;
-    }
-
-    .timeline-dot {
-        left: 15px; /* Posição do ponto na linha vertical para mobile */
-        top: 25px;
-        transform: translateX(0);
-    }
-
-    .timeline-title {
-        text-align: left; /* Alinha o título à esquerda */
-        margin-bottom: 10px;
-    }
-
-    .timeline-content {
-        margin-top: 10px;
-        margin-left: 0;
-    }
-}
-
-/* =================================
-   ESTILOS PARA O TEXTO "SOBRE MIM"
-   ================================= */
-
-.about-intro {
-    text-align: left; /* Alinha o h2 à esquerda */
+    text-align: left; 
     max-width: 800px;
     margin: 0 auto 8rem auto;
-
-    /* --- NOVOS ESTILOS --- */
-    background-color: #1f1f1f; /* 1. Fundo (igual às caixas da timeline) */
-    padding: 3rem;             /* Espaçamento interno para o texto respirar */
-    border-radius: 8px;        /* Cantos arredondados (igual à timeline) */
-    border: 1px solid #333;  /* Borda sutil (igual à timeline) */
+    background-color: var(--bg-card); 
+    padding: 3rem;              
+    border-radius: 8px;        
+    border: 1px solid var(--border-color);  
 }
+.about-intro .heading { text-align: center; margin-bottom: 3rem; font-size: 3rem; }
+.about-intro p { font-size: 1.7rem; line-height: 1.5; color: var(--text-gray); text-align: justify; }
 
-/* O título dentro da caixa */
-.about-intro .heading {
-    text-align: center; /* Centraliza o título "Sobre Mim" */
-    margin-bottom: 3rem; /* Espaço abaixo do título */
+/* Timeline Horizontal */
+.timeline-horizontal-container { width: 100%; max-width: 1000px; margin-bottom: 8rem; text-align: center; }
+.timeline-horizontal-container .heading-small { font-size: 3rem; margin-bottom: 10rem; }
+.timeline-horizontal { position: relative; display: flex; justify-content: space-between; align-items: stretch; }
+.timeline-horizontal::before {
+    content: ''; position: absolute; width: 100%; height: 4px;
+    background-color: var(--main-color); box-shadow: 0 0 10px var(--main-color);
+    top: 0; left: 0; z-index: 0;
 }
+.timeline-item { flex: 1; text-align: center; position: relative; padding: 0 15px; display: flex; flex-direction: column; }
+.timeline-title { font-size: 1.8rem; color: var(--text-color); margin-bottom: 30px; transform: translateY(-150%); }
+.timeline-dot {
+    position: absolute; left: 50%; transform: translateX(-50%); top: -8px; 
+    width: 20px; height: 20px; background-color: white; border: 4px solid var(--main-color);
+    border-radius: 50%; box-shadow: 0 0 15px var(--main-color); z-index: 2; 
+}
+.timeline-content {
+    background-color: var(--bg-card); padding: 1.55rem; border-radius: 8px;
+    border: 1px solid var(--border-color); text-align: left; margin-top: auto; padding-top: 30px;
+}
+.timeline-content p { font-size: 1.4rem; line-height: 1.3; color: var(--text-gray); }
 
-.about-intro p {
-    font-size: 1.7rem;
-    line-height: 1.3;
-    color: #ccc;
+/* Galeria de Fotos */
+.photos { padding: 5rem 9%; background-color: black; text-align: center; }
+.photo-gallery { display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem; margin-top: 4rem; }
+.photo-gallery img {
+    width: 300px; height: 300px; object-fit: cover;
+    border: 3px solid var(--main-color); border-radius: 8px; transition: 0.3s ease;
+}
+.photo-gallery img:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--main-color); }
+
+/* --- RESPONSIVIDADE DA PÁGINA SOBRE --- */
+@media (max-width: 768px) {
+    .timeline-horizontal {
+        flex-direction: column; 
+        align-items: flex-start; 
+        max-width: 400px; margin: 0 auto;
+    }
+    .timeline-horizontal::before {
+        height: 100%; width: 4px; top: 0; left: 20px;
+    }
+    .timeline-item { width: 100%; padding: 40px 0 20px 60px; text-align: left; }
+    .timeline-dot { left: 15px; top: 45px; }
+    .timeline-title { transform: none; margin-bottom: 5px; }
+    .timeline-content { margin-top: 5px; }
     
-
-    /* --- NOVO ESTILO --- */
-    text-align: justify; /* 2. Texto justificado */
+    .photo-gallery img { width: 100%; max-width: 350px; height: auto; }
 }
 
-/* --- ESTILOS DOS PROJETOS --- */
-
-/* O container que segura todos os cards */
+/* ==========================================================================
+   5. PÁGINA: PROJETOS
+   ========================================================================== */
 .projects-container {
     display: grid;
-    /* Tenta criar 2 colunas, mas se não couber, fica com 1 */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem; /* Espaçamento entre os cards */
-    margin-top: 2rem;
-    width: 100%;
+    gap: 2rem; margin-top: 2rem; width: 100%;
 }
 
-/* O card individual do projeto */
 .project-card {
-    background: #f4f4f4; /* Um cinza bem claro de fundo */
-    border: 1px solid #ddd;
-    border-radius: 8px; /* Cantos arredondados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Sombra suave */
-    overflow: hidden; /* Garante que a imagem não vaze dos cantos */
-    display: flex;
-    flex-direction: column; /* Organiza o conteúdo em coluna */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: var(--bg-card-light); 
+    border: 1px solid #ddd; border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); 
+    display: flex; flex-direction: column; 
+    transition: 0.3s ease;
 }
-
-.project-card:hover {
-    transform: translateY(-5px); /* Efeito de "levantar" */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* A imagem/gif do projeto */
-.project-image {
-    width: 100%;
-    height: 200px; /* Altura fixa para todos os cards */
-    object-fit: cover; /* Garante que a imagem cubra o espaço */
-    border-bottom: 1px solid #ddd;
-}
-
-/* O título do projeto */
-.project-title {
-    font-size: 1.5rem; /* 24px */
-    color: #333;
-    padding: 1rem 1rem 0.5rem 1rem;
-    margin: 0;
-}
-
-/* A descrição do projeto */
-.project-description {
-    font-size: 1rem; /* 16px */
-    color: #555;
-    padding: 0 1rem 1rem 1rem;
-    flex-grow: 1; /* Faz a descrição ocupar o espaço disponível */
-}
-
-/* O container das tags de tecnologia */
-.project-tags {
-    padding: 0 1rem 1rem 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem; /* Espaço entre as tags */
-}
-
-/* As tags individuais */
+.project-card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); }
+.project-image { width: 100%; height: 200px; object-fit: cover; border-bottom: 1px solid #ddd; }
+.project-title { font-size: 1.6rem; color: #333; padding: 1.5rem 1.5rem 0.5rem; font-weight: 700; }
+.project-description { font-size: 1.2rem; color: #555; padding: 0 1.5rem 1.5rem; flex-grow: 1; }
+.project-tags { padding: 0 1.5rem 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .project-tags span {
-    background: #e0e0e0; /* Fundo da tag */
-    color: #444;
-    font-size: 0.75rem; /* 12px */
-    font-weight: 600;
-    padding: 0.25rem 0.75rem;
-    border-radius: 12px; /* Pílula arredondada */
+    background: #e0e0e0; color: #444; font-size: 1rem;
+    font-weight: 600; padding: 0.3rem 0.8rem; border-radius: 12px; 
 }
-
-/* O container dos links (botão) */
-.project-links {
-    padding: 0 1rem 1.5rem 1rem;
-    margin-top: auto; /* Empurra o botão para o final do card */
-}
-
-/* O botão de link */
+.project-links { padding: 0 1.5rem 1.5rem; margin-top: auto; }
 .btn-link {
-    display: inline-block;
-    background-color: #333; /* Cor do GitHub */
-    color: #fff; /* Texto branco */
-    padding: 0.75rem 1.5rem;
-    border-radius: 5px;
-    text-decoration: none; /* Tira o sublinhado do link */
-    font-weight: 600;
-    transition: background-color 0.3s ease;
+    display: inline-block; background-color: #333; color: #fff; 
+    padding: 0.8rem 1.5rem; border-radius: 5px; font-weight: 600; transition: 0.3s;
 }
+.btn-link:hover { background-color: #555; }
+.btn-link i { margin-right: 0.5rem; }
 
-.btn-link:hover {
-    background-color: #555; /* Cor mais clara ao passar o mouse */
-}
-
-/* Ícone dentro do botão */
-.btn-link i {
-    margin-right: 0.5rem;
-}
-
-/* =================================
-   ESTILOS DA PÁGINA DE EDUCAÇÃO
-   ================================= */
-.education {
-    padding: 12rem 9% 5rem;
-    background-color: #111;
-    min-height: 100vh;
-}
-
-.education .heading {
-    text-align: center;
-    margin-bottom: 6rem;
-}
+/* ==========================================================================
+   6. PÁGINA: EDUCAÇÃO
+   ========================================================================== */
+.education { background-color: var(--bg-color); }
+.education .heading { text-align: center; margin-bottom: 6rem; font-size: 3.5rem; }
 
 .education-container {
-    display: grid;
-    /* MUDANÇA: Cria um grid de 4 colunas em telas maiores */
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem; /* Diminuí o espaço para os cards caberem melhor */
+    display: grid;
+    /* Define 1 coluna para TODOS os tamanhos de tela */
+    grid-template-columns: 1fr; 
+    gap: 2rem; 
+    
+    /* RECOMENDAÇÃO: Como agora é uma lista vertical, 
+       limite a largura para não ficar esticado demais em monitores grandes */
+    max-width: 900px; 
+    margin: 0 auto;
 }
 
 .education-card {
-    background-color: #1f1f1f;
-    padding: 3rem;
-    border-radius: 8px;
-    border: 1px solid #333;
-    transition: 0.3s ease;
-    display: flex;
-    flex-direction: column; /* Garante que o conteúdo se alinhe verticalmente */
+    background-color: var(--bg-card); padding: 3rem; border-radius: 8px;
+    border: 1px solid var(--border-color); transition: 0.3s ease;
+    display: flex; flex-direction: column; 
 }
-
-/* Efeito de hover para destacar o card */
 .education-card:hover {
-    transform: translateY(-5px); /* Eleva o card sutilmente */
-    border-color: #5CC093;
+    transform: translateY(-5px); border-color: var(--main-color);
     box-shadow: 0 0 15px rgba(92, 192, 147, 0.2);
 }
-
-/* Estilo do Ícone */
-.education-card i {
-    font-size: 3rem;
-    color: #5CC093;
-    margin-bottom: 1.5rem;
-}
-
-/* Título do Card */
-.education-card h3 {
-    font-size: 2.2rem;
-    color: white;
-    margin-bottom: 2rem;
-}
-
-/* Lista de itens */
-.education-card ul {
-    list-style: none; /* Remove os pontos da lista */
-    padding: 0;
-    margin: 0;
-    flex-grow: 1; /* Faz o conteúdo da lista crescer para preencher o card */
-}
-
+.education-card i { font-size: 3rem; color: var(--main-color); margin-bottom: 1.5rem; }
+.education-card h3 { font-size: 2.2rem; color: var(--text-color); margin-bottom: 2rem; }
+.education-card ul { list-style: none; flex-grow: 1; }
 .education-card ul li {
-    font-size: 1.6rem;
-    color: #ccc;
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid #333; /* Linha separadora sutil */
+    font-size: 1.6rem; color: var(--text-gray); margin-bottom: 2rem;
+    padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); 
 }
+.education-card ul li:last-child { border-bottom: none; margin-bottom: 0; }
+.education-card ul li h4 { font-size: 1.8rem; color: white; margin-bottom: 0.5rem; }
+.education-card ul li .institution { display: block; color: var(--main-color); font-style: italic; font-size: 1.5rem; }
+.education-card ul li .date { display: block; font-size: 1.4rem; color: #888; margin-top: 0.5rem; }
 
-.education-card ul li:last-child {
-    margin-bottom: 0;
-    border-bottom: none; /* Remove a linha do último item */
-}
+/* REMOVI AS MEDIA QUERIES DAQUI.
+   Como já definimos "1fr" (1 coluna) lá em cima, não precisamos
+   fazer nenhum ajuste para celular ou tablet, pois eles já
+   vão usar 1 coluna automaticamente.
+*/
 
-/* Título de cada item da lista (ex: "Tecnologia em Ciência de Dados") */
-.education-card ul li h4 {
-    font-size: 1.8rem;
-    color: white;
-    margin-bottom: 0.5rem;
-}
-
-/* Nome da Instituição ou descrição da tecnologia */
-.education-card ul li .institution {
-    display: block;
-    color: #5CC093; /* Cor de destaque */
-    font-style: italic;
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-/* Data do certificado/curso */
-.education-card ul li .date {
-    display: block;
-    font-size: 1.4rem;
-    color: #888; /* Cor sutil para a data */
-}
-
-/* =================================
-   RESPONSIVIDADE (Telas menores)
-   ================================= */
-
-/* Para Tablets (ex: iPads) - Mostra 2 colunas */
-@media (max-width: 1200px) {
-    .education-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 3rem;
-    }
-}
-
-/* Para Celulares - Mostra 1 coluna */
-@media (max-width: 768px) {
-    .education-container {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* =================================
-   ESTILOS DA PÁGINA DE EXPERIÊNCIA (NOVO LAYOUT)
-   ================================= */
-.experience {
-    padding: 12rem 9% 5rem;
-    background-color: #111;
-    min-height: 100vh;
-}
-
-.experience .heading {
-    text-align: center;
-    margin-bottom: 6rem;
-}
+/* ==========================================================================
+   7. PÁGINA: EXPERIÊNCIA
+   ========================================================================== */
+.experience { background-color: var(--bg-color); }
+.experience .heading { text-align: center; margin-bottom: 6rem; font-size: 3.5rem; }
 
 .experience-container {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 3rem; /* Espaçamento entre os blocos de experiência */
+    max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 3rem; 
 }
 
 .experience-block {
-    background-color: #1f1f1f;
-    padding: 2.5rem 3rem;
-    border-radius: 8px;
-    border: 1px solid #333;
-    /* Linha lateral sutil para dar um toque de design */
-    border-left: 5px solid #5CC093;
-    transition: 0.3s ease;
+    background-color: var(--bg-card); padding: 2.5rem 3rem;
+    border-radius: 8px; border: 1px solid var(--border-color);
+    border-left: 5px solid var(--main-color); transition: 0.3s ease;
 }
-
-.experience-block:hover {
-    border-color: #5CC093;
-    transform: translateY(-5px); /* Efeito de elevação sutil */
-}
+.experience-block:hover { border-color: var(--main-color); transform: translateY(-5px); }
 
 .experience-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    flex-wrap: wrap; /* Para telas pequenas */
-    gap: 1rem;
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid #333; /* Linha separadora */
+    display: flex; justify-content: space-between; align-items: baseline;
+    flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color); 
 }
+.experience-header h3 { font-size: 2.2rem; color: white; }
+.experience-header h3 .company-name { color: var(--main-color); font-weight: 400; font-style: italic; font-size: 2rem; }
+.experience-header .date { font-size: 1.5rem; color: #888; font-style: italic; }
 
-.experience-header h3 {
-    font-size: 2.2rem;
-    color: white;
-}
-
-/* Estilo para "@ Stone", "@ Aiesec", etc. */
-.experience-header h3 .company-name {
-    color: #5CC093;
-    font-weight: 400; /* Mais leve que o título */
-    font-style: italic;
-    font-size: 2rem;
-}
-
-.experience-header .date {
-    font-size: 1.5rem;
-    color: #888;
-    font-style: italic;
-    flex-shrink: 0; /* Impede que a data quebre linha */
-}
-
-/* Estilo para a descrição (parágrafo ou lista) */
-.job-description {
-    font-size: 1.6rem;
-    color: #ccc;
-    line-height: 1.6;
-    padding-left: 0; /* Remove padding de listas */
-    list-style: none; /* Remove bolinhas */
-}
-
-/* Remove margem extra do parágrafo */
-.job-description.p {
-    margin: 0;
-}
-
-.job-description li {
-    margin-bottom: 1rem;
-    position: relative;
-    padding-left: 1.5rem; /* Espaço para o marcador customizado */
-}
-
-/* Marcador de lista customizado (mais sutil que bolinhas) */
+.job-description { font-size: 1.6rem; color: var(--text-gray); line-height: 1.6; list-style: none; }
+.job-description li { margin-bottom: 1rem; position: relative; padding-left: 2rem; }
 .job-description li::before {
-    content: '›'; /* Marcador 'maior que' */
-    color: #5CC093;
-    position: absolute;
-    left: 0;
-    top: -2px; /* Ajuste fino de alinhamento */
-    font-size: 2rem;
+    content: '›'; color: var(--main-color); position: absolute; left: 0; top: -2px; font-size: 2rem;
 }
 
-.job-description li:last-child {
-    margin-bottom: 0;
+/* --- RESPONSIVIDADE DA EXPERIÊNCIA --- */
+@media (max-width: 768px) {
+    .experience-block { padding: 2rem; }
+    .experience-header { flex-direction: column; align-items: flex-start; }
 }

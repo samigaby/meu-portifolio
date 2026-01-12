@@ -20,6 +20,7 @@
             <a href="experience.html">Experiência</a>
 
         </nav>
+            <div id="menu-icon" class="fas fa-bars"></div>
     </header>
 
     <section class="home">
@@ -44,7 +45,16 @@
             
         </div>
 
-    </section>
+    </section>       
+        <script>
+                    let menuIcon = document.querySelector('#menu-icon');
+                    let navbar = document.querySelector('nav');
+
+                    menuIcon.onclick = () => {
+                        menuIcon.classList.toggle('fa-times');
+                        navbar.classList.toggle('active');
+                    };
+        </script> 
     
 </body>
 </html>

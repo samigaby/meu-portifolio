@@ -18,6 +18,7 @@
             <a href="projects.html">Projetos</a>
             <a href="education.html" class="active">Educação</a> <a href="experience.html">Experiência</a>
         </nav>
+            <div id="menu-icon" class="fas fa-bars"></div>
     </header>
 
     <section class="education" id="education">
@@ -32,7 +33,7 @@
                     <li>
                         <h4>Tecnologia em Ciência de Dados</h4>
                         <span class="institution">UNINTER - Centro Universitário Internacional</span>
-                        <span class="date">Abril 2023 - Novembro 2025</span>
+                        <span class="date">Abril 2023 - Dezembro 2025</span>
                     </li>
                     </ul>
             </div>
@@ -41,6 +42,21 @@
                 <i class="fa-solid fa-certificate"></i>
                 <h3>Certificados</h3>
                 <ul>
+                    <li>
+                        <h4>Praticando Figma</h4>
+                        <span class="institution">Alura</span>
+                        <span class="date">Novembro 2025</span>
+                    </li>
+                    <li>
+                        <h4>SQLite online: conhecendo instruções SQL</h4>
+                        <span class="institution">Alura</span>
+                        <span class="date">Dezembro 2024</span>
+                    </li>
+                    <li>
+                        <h4>Data Science: analise e visualização de dados</h4>
+                        <span class="institution">Alura</span>
+                        <span class="date">Janeiro 2024</span>
+                    </li>
                     <li>
                         <h4>Análise de Dados e Power BI</h4>
                         <span class="institution">Escola Conquer</span>
@@ -99,7 +115,17 @@
                 </ul>
             </div>
 
-        </div> </section>
-    
+        </div> 
+    </section>
+
+            <script>
+                let menuIcon = document.querySelector('#menu-icon');
+                let navbar = document.querySelector('nav');
+
+                menuIcon.onclick = () => {
+                    menuIcon.classList.toggle('fa-times');
+                    navbar.classList.toggle('active');
+                };
+            </script> 
 </body>
 </html>
