@@ -24,11 +24,11 @@ Este projeto foi construído do zero utilizando as seguintes tecnologias:
 
 O site está organizado nas seguintes páginas:
 
-1.  **Início:** Um resumo rápido (tela inícial).
+1.  **Início:** tela inícial.
 2.  **Sobre Mim:** Detalhes sobre minha trajetória, um texto biográfico e uma linha do tempo da minha jornada.
 3.  **Educação:** Cards detalhando minha formação acadêmica, certificados, tecnologias e idiomas.
 4.  **Experiência:** Uma linha do tempo vertical com o histórico das minhas experiências profissionais.
-5.  **Projetos:** (Página a ser adicionada) Onde ficarão os links para meus projetos de dados.
+5.  **Projetos:** Lugar de exibição dos meus projetos.
 
 ---
 
